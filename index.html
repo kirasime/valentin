@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#8b2942">
+  <title>С Днём святого Валентина 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Marck+Script&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      font-size: clamp(14px, 4vw, 18px);
+      -webkit-tap-highlight-color: transparent;
+      min-height: 100%;
+      min-height: 100dvh;
+    }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      background: linear-gradient(165deg, #1a0a0f 0%, #2d1520 25%, #3d1a28 50%, #2d1520 100%);
+      color: #fce4ec;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      padding: 1rem;
+      position: relative;
+    }
+
+    .hearts-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .heart-float {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0.15;
+      animation: float 8s ease-in-out infinite;
+    }
+    .heart-float:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+    .heart-float:nth-child(2) { left: 80%; top: 15%; animation-delay: 1s; }
+    .heart-float:nth-child(3) { left: 25%; top: 70%; animation-delay: 2s; }
+    .heart-float:nth-child(4) { left: 70%; top: 75%; animation-delay: 3s; }
+    .heart-float:nth-child(5) { left: 50%; top: 40%; animation-delay: 4s; }
+    .heart-float:nth-child(6) { left: 15%; top: 50%; animation-delay: 5s; }
+    .heart-float:nth-child(7) { left: 85%; top: 45%; animation-delay: 6s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-15px) scale(1.1); }
+    }
+
+    .card-wrap {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      min-height: 60vh;
+      min-height: 60dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .card-closed {
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+      padding: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .card-closed:active {
+      transform: scale(0.98);
+    }
+    .card-closed .envelope {
+      width: 200px;
+      height: 140px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+    }
+    .envelope .body {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 120px solid #8b2942;
+      z-index: 2;
+    }
+    .envelope .flap {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-top: 70px solid #a63d52;
+      z-index: 3;
+      transition: transform 0.6s ease;
+      transform-origin: top center;
+    }
+    .card-closed.open .envelope .flap {
+      transform: translateX(-50%) rotateX(-180deg);
+    }
+    .envelope .paper {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 100px;
+      background: linear-gradient(180deg, #fce4ec 0%, #f8bbd9 100%);
+      border-radius: 4px;
+      z-index: 1;
+      box-shadow: inset 0 2px 8px rgba(255,255,255,0.5);
+    }
+    .card-closed .hint {
+      font-size: 1rem;
+      opacity: 0.9;
+      letter-spacing: 0.05em;
+    }
+
+    .card-open {
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+    .card-open.visible {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .card-inner {
+      background: linear-gradient(180deg, rgba(254,228,236,0.97) 0%, rgba(248,187,217,0.97) 100%);
+      color: #4a1942;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.1);
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .card-inner h1 {
+      font-family: 'Marck Script', cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: #8b2942;
+    }
+    .card-inner .date {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 1.25rem;
+    }
+    .card-inner .message {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .card-inner .sign {
+      font-family: 'Marck Script', cursive;
+      font-size: 1.5rem;
+      color: #a63d52;
+    }
+    .heart-divider {
+      font-size: 1.25rem;
+      margin: 0.75rem 0;
+      letter-spacing: 0.3em;
+    }
+
+    .footer-note {
+      position: fixed;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.6;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-bg" aria-hidden="true">
+    <span class="heart-float">♥</span>
+    <span class="heart-float">♥</span>
+    <span class="heart-float">♥</span>
+    <span class="heart-float">♥</span>
+    <span class="heart-float">♥</span>
+    <span class="heart-float">♥</span>
+    <span class="heart-float">♥</span>
+  </div>
+
+  <div class="card-wrap">
+    <div class="card-closed" id="cardClosed" role="button" tabindex="0" aria-label="Открыть валентинку">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="body"></div>
+        <div class="paper"></div>
+      </div>
+      <p class="hint">Нажми, чтобы открыть 💌</p>
+    </div>
+
+    <div class="card-open" id="cardOpen">
+      <div class="card-inner">
+        <h1>С Днём святого Валентина</h1>
+        <p class="date">14 февраля</p>
+        <div class="heart-divider">♥ ♥ ♥</div>
+        <p class="message">
+          Ты делаешь каждый мой день особенным. Спасибо, что ты есть. Будешь моей валентинкой?
+        </p>
+        <div class="heart-divider">♥ ♥ ♥</div>
+        <p class="sign">С любовью ♡</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">Сделано с любовью · 14.02.2025</p>
+
+  <script>
+    (function() {
+      var closed = document.getElementById('cardClosed');
+      var open = document.getElementById('cardOpen');
+      if (!closed || !open) return;
+
+      function openCard() {
+        closed.classList.add('open');
+        closed.style.display = 'none';
+        open.classList.add('visible');
+      }
+
+      closed.addEventListener('click', openCard);
+      closed.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openCard();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
